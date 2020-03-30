@@ -1,6 +1,7 @@
 # Converter of computer data exchange formats
 # JSON, XML, YAML and CSV
 > Project as part of university subject "Teoria kompilacji i kompilatory"
+
 > Authors: Agata Korzeniowska, Adam Surówka, Maciej Syska,  Mateusz Kastura
 ---
 ### Changelog
@@ -68,3 +69,5 @@ Program is to follow algorithm below:
 ## External libraries
 //TODO
 ___
+
+[Google docs documentation](https://docs.google.com/document/d/1ENno_0kCY5ld6gknKiRATNfy-hiUUyqH0_rWKdvlXSA)
