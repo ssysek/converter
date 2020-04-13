@@ -1,5 +1,6 @@
 package com.example.kompilatory.ConverterUtils;
 
+import com.example.kompilatory.Exceptions.InvalidFileFormatException;
 import com.example.kompilatory.Providers.ConversionType;
 
 public class Converter {
@@ -18,18 +19,25 @@ public class Converter {
     public void convert(){
         String outputFileContent = null;
 
-        switch (outputType){
-            case JSON:
-                outputFileContent = converter.convertToJson(inputPath);
-                break;
-            case XML:
-                break;
-            case CSV:
-                break;
-            case YAML:
-                break;
+        try {
+            switch (outputType) {
+                case JSON:
+                    outputFileContent = converter.convertToJson(inputPath);
+                    break;
+                case XML:
+                    outputFileContent = converter.convertToXml(inputPath);
+                    break;
+                case CSV:
+                    outputFileContent = converter.convertToCsv(inputPath);
+                    break;
+                case YAML:
+                    outputFileContent = converter.convertToYaml(inputPath);
+                    break;
+            }
+            Utils.saveFile(outputFileContent, outputPath);
+        } catch (Exception e){
+
         }
-        Utils.saveFile(outputFileContent, outputPath);
     }
 
     private void setConverter(ConversionType inputType){

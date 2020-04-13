@@ -2,13 +2,16 @@ package com.example.kompilatory.Validators;
 
 import jdk.jshell.spi.ExecutionControl;
 
+import java.io.File;
+
 public class InputFileValidator{
     public static boolean validate(String filePath){
         return (checkFileExtension(filePath) && checkIfFileExists(filePath));
     }
 
     private static boolean checkIfFileExists(String filePath){
-        throw new UnsupportedOperationException();
+        File tmpFile = new File(filePath);
+        return tmpFile.exists();
     }
 
     private static boolean checkFileExtension(String filePath){

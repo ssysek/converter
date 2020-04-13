@@ -3,6 +3,10 @@ package com.example.kompilatory.ConverterUtils;
 import com.example.kompilatory.Exceptions.InvalidFileFormatException;
 import com.example.kompilatory.Providers.ConversionType;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 public class Utils {
     public static ConversionType getInputFileType(String filePath) throws InvalidFileFormatException {
         if (filePath.endsWith(".json"))
@@ -18,6 +22,15 @@ public class Utils {
     }
 
     public static void saveFile(String fileContent, String outputPath){
-
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter(outputPath, "UTF-8");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        writer.print(fileContent);
+        writer.close();
     }
 }
