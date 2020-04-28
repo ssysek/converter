@@ -1,7 +1,7 @@
 package com.example.kompilatory.ConverterUtils;
 
 import java.io.*;
-import java.util.Stack;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,8 +22,110 @@ public class JsonConverter implements IConverter{
 
     @Override
     public String convertToCsv(String filePath) {
+        File file = new File(filePath);
+        Stack<String> parents = new Stack<>();
+        Map<String, List<String>> data = new HashMap<>();
+        List<String> headers = new ArrayList<>();
+        int arrayElementCounter = 1;
+        StringBuilder output = new StringBuilder();
 
-        return filePath;
+
+        Pattern opening = Pattern.compile("(\")([a-zA-Z0-9]+)(\": [{\\[])");
+        Pattern oneLine = Pattern.compile("([\\s]+)(\")([a-zA-Z0-9]+)(\": [\"]?)([^\"]+)([\"]?)([.,]?)");
+        Pattern closure = Pattern.compile("([}\\]][,]?)");
+        Pattern arrayEl = Pattern.compile("([\\s]+[\"]?)([^\"\\[\\]\\{\\}]+)([\"]?)([,]?)");
+
+        int level = -1;
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String st;
+            while ((st = br.readLine()) != null) {
+                System.out.println(st);
+                Matcher openingMatcher = opening.matcher(st);
+                Matcher oneLineMatcher = oneLine.matcher(st);
+                Matcher closureMatcher = closure.matcher(st);
+                Matcher arrayElMatcher = arrayEl.matcher(st);
+
+                if (st.trim().equals("{")){
+                    level++;
+                }
+                else if (openingMatcher.find()) {
+                    parents.push(openingMatcher.group(2));
+                } else if (oneLineMatcher.find()){
+                    String key = null;
+                    if (parents.size() > 0)
+                        key = String.join("/", parents) + "/" + oneLineMatcher.group(3);
+                    else
+                        key = oneLineMatcher.group(3);
+
+                    String input = oneLineMatcher.group(5);
+                    inputData(data, headers, level, key, input);
+                } else if (closureMatcher.find()){
+                    if (!parents.empty()) {
+                        parents.pop();
+                        arrayElementCounter = 1;
+                    }
+                } else if (arrayElMatcher.find()){
+                    String key = String.join("/", parents) + "/" + arrayElementCounter;
+
+                    String input = arrayElMatcher.group(2);
+                    inputData(data, headers, level, key, input);
+                    arrayElementCounter++;
+                }
+            }
+
+            output.append(String.join(",", headers));
+            output.append("\n");
+
+            for (List<String> dataList : data.values()){
+                if (dataList.size() < level + 1){
+                    for (int i = dataList.size() - 1; i < level; i++)
+                        dataList.add("");
+                }
+            }
+
+            for (int i = 0; i <= level; i++){
+                for (int j = 0; j < headers.size(); j++){
+                    String header = headers.get(j);
+                    if (data.get(header) != null && data.get(header).get(i) != null){
+                        output.append(data.get(header).get(i));
+                    }
+                    if (j != headers.size() - 1){
+                        output.append(",");
+                    }
+                }
+                output.append("\n");
+            }
+
+        }catch (Exception e){
+            output = new StringBuilder();
+            System.out.println(e.getMessage());
+        }
+        return output.toString();
+    }
+
+    private void inputData(Map<String, List<String>> data, List<String> headers, int level, String key, String input) {
+        if (input.trim().equals("null")) return;
+
+        if (!input.contains("\"") && input.contains(","))
+            input = input.replace(",", "");
+
+        if (!headers.contains(key))
+            headers.add(key);
+        if (data.containsKey(key)){
+            for (int i = data.get(key).size(); i < level; i ++){
+                data.get(key).add("");
+            }
+            data.get(key).add(level, input);
+        } else {
+            List<String> initialList = new ArrayList<>();
+            for (int i = 0; i < level; i ++){
+                initialList.add("");
+            }
+            initialList.add(level, input);
+            data.put(key, initialList);
+        }
     }
 
     @Override
@@ -56,12 +158,10 @@ public class JsonConverter implements IConverter{
                     output.append('\n');
                 }
             }
-            System.out.println(output.toString());
         }catch (Exception e){
-            output = null;
+            output = new StringBuilder();
             System.out.println(e.getMessage());
         }
-
         return output.toString();
     }
 
@@ -105,7 +205,7 @@ public class JsonConverter implements IConverter{
                 }
             }
         }catch (Exception e){
-            output = null;
+            output = new StringBuilder();
             System.out.println(e.getMessage());
         }
 

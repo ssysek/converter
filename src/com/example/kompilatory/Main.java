@@ -9,9 +9,9 @@ import com.example.kompilatory.Validators.InputFileValidator;
 public class Main {
 
     public static void main(String[] args) {
-        String filePath = "test1.json";
-        String outputFilePath = "test1.yaml";
-        ConversionType outputConversionType = ConversionType.YAML;
+        String filePath = "test2.json";
+        String outputFilePath = "test2.csv";
+        ConversionType outputConversionType = ConversionType.CSV;
 
         if (InputFileValidator.validate(filePath)){
             try{
