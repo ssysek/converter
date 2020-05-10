@@ -9,18 +9,20 @@ import com.example.kompilatory.Validators.InputFileValidator;
 public class Main {
 
     public static void main(String[] args) {
-        String filePath = "test2.json";
-        String outputFilePath = "test2.csv";
-        ConversionType outputConversionType = ConversionType.CSV;
-
-        if (InputFileValidator.validate(filePath)){
-            try{
+        String filePath = "MOCK_DATA.csv";
+        String outputFilePath = "test2.yaml";
+        ConversionType outputConversionType = ConversionType.YAML;
+        if (InputFileValidator.validate(filePath)) {
+            try {
                 ConversionType inputConversionType = Utils.getInputFileType(filePath);
-                Converter converter = new Converter(filePath, outputFilePath, inputConversionType, outputConversionType);
+                Converter converter = new Converter(filePath, outputFilePath, inputConversionType, outputConversionType, true);
                 converter.convert();
-            } catch (InvalidFileFormatException e){
+
+            }
+            catch (InvalidFileFormatException e) {
                 System.out.println(e.getMessage() + " " + e.getErrorLine());
             }
+
         }
     }
 }

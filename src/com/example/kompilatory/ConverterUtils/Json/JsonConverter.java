@@ -1,11 +1,15 @@
-package com.example.kompilatory.ConverterUtils;
+package com.example.kompilatory.ConverterUtils.Json;
 
-import java.io.*;
+import com.example.kompilatory.ConverterUtils.IConverter;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class JsonConverter implements IConverter{
+public class JsonConverter implements IConverter {
 
     private static final JsonConverter INSTANCE = new JsonConverter();
 
