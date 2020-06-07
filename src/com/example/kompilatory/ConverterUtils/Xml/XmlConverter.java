@@ -1,6 +1,8 @@
 package com.example.kompilatory.ConverterUtils.Xml;
 
 
+import com.example.kompilatory.ConverterUtils.IConverter;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,15 +33,15 @@ public class XmlConverter implements IConverter {
     }
     @Override
     public String convertToYaml(String filePath) {
-
+        return null;
     }
     @Override
     public String convertToCsv(String filePath) {
-
+        return null;
     }
     @Override
     public String convertToJson(String filePath) {
-
+        return null;
     }
 
 }

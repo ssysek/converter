@@ -1,10 +1,12 @@
 package com.example.kompilatory.ConverterUtils.Json;
 
 import com.example.kompilatory.ConverterUtils.IConverter;
+import com.example.kompilatory.ConverterUtils.Utils;
+import jdk.jshell.execution.Util;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,7 +23,50 @@ public class JsonConverter implements IConverter {
 
     @Override
     public boolean validateFile(String filePath) {
-        return false;
+        prepareFile(filePath);
+        return true;
+    }
+
+    private String prepareFile(String filePath){
+        int level = 0;
+        StringBuilder result = new StringBuilder();
+        try{
+            String content = Files.readString(Path.of(filePath));
+            char[] arrayContent = content.toCharArray();
+
+            for (int i = 0; i < content.length(); i ++){
+                if ((arrayContent[i] == '{' || arrayContent[i] == '[') && arrayContent[i + 1] != '\n'){
+                    level++;
+                    result.append(arrayContent[i]);
+                    result.append("\n");
+                    result.append("\t".repeat(level));
+                }
+                else if ((arrayContent[i] == '}' || arrayContent[i] == ']') && (!Character.isWhitespace(arrayContent[i-1]) && !Character.isWhitespace(arrayContent[i-2]))){
+                    level--;
+                    result.append("\n");
+                    result.append("\t".repeat(level));
+                    result.append(arrayContent[i]);
+                }
+                else if (arrayContent[i] == ',' && arrayContent[i+1] != '\n'){
+                    result.append(arrayContent[i]);
+                    result.append("\n");
+                    result.append("\t".repeat(level));
+                }
+                else{
+                    result.append(arrayContent[i]);
+                    if (arrayContent[i] == '{' || arrayContent[i] == '[') level ++;
+                    if (arrayContent[i] == '}' || arrayContent[i] == ']') level --;
+                }
+            }
+
+            Utils.saveFile(result.toString(), filePath);
+
+            return result.toString();
+
+
+        } catch (Exception e){
+            return null;
+        }
     }
 
     @Override
@@ -155,7 +200,7 @@ public class JsonConverter implements IConverter {
                     output.append(openingMatcher.replaceFirst("$2:"));
                     output.append('\n');
                 } else if (oneLineMatcher.find()){
-                    output.append(oneLineMatcher.replaceFirst("$$13: $5"));
+                    output.append(oneLineMatcher.replaceFirst("$1$3: $5"));
                     output.append('\n');
                 } else if (arrayElMatcher.find()){
                     output.append(arrayElMatcher.replaceFirst("\t- $2"));

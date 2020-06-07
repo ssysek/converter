@@ -2,6 +2,7 @@ package com.example.kompilatory.ConverterUtils;
 
 import com.example.kompilatory.ConverterUtils.Csv.CsvConverter;
 import com.example.kompilatory.ConverterUtils.Json.JsonConverter;
+import com.example.kompilatory.Exceptions.InvalidFileFormatException;
 import com.example.kompilatory.Providers.ConversionType;
 
 public class Converter {
@@ -48,6 +49,14 @@ public class Converter {
         }
         catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public boolean validateInputFile(){
+        try {
+            return this.converter.validateFile(this.inputPath);
+        } catch (InvalidFileFormatException e) {
+            return false;
         }
     }
 
