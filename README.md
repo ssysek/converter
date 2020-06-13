@@ -8,7 +8,7 @@
 | Milestone | Date  | Info |
 | :------------ |:---------------:| -----:|
 |  #1 | 20.03.2020 | Document creation, initial specification|
-| #2 |    ...      |   ... |
+|  #2 | 12.06.2020 |   Documentation improvements |
 
 ---
 # Overall Decription
@@ -32,7 +32,8 @@ Program is to follow algorithm below:
 ---
 # Installation, Usage
 
-//TODO
+In order to run the tool Java Runtime Environment 8+ is required
+Tool can be triggers via running main class or impemented into existing solution and used calling Converter object with params
 
 ---
 # Tech stack, data format, program structure
@@ -67,7 +68,7 @@ Program is to follow algorithm below:
 - Support more file extensions
 ---
 ## External libraries
-//TODO
+none
 ___
 
 [Google docs documentation](https://docs.google.com/document/d/1ENno_0kCY5ld6gknKiRATNfy-hiUUyqH0_rWKdvlXSA)
