@@ -1,11 +1,11 @@
-package com.example.kompilatory.ConverterUtils.Csv;
+package com.agh.kompilatory.ConverterUtils.Csv;
 
-import com.example.kompilatory.ConverterUtils.IConverter;
+import com.agh.kompilatory.ConverterUtils.IConverter;
 
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import static com.example.kompilatory.ConverterUtils.Csv.CsvConverterUtils.getCsvFile;
+import static com.agh.kompilatory.ConverterUtils.Csv.CsvConverterUtils.getCsvFile;
 
 
 /*

@@ -68,7 +68,9 @@ Tool can be triggers via running main class or impemented into existing solution
 - Support more file extensions
 ---
 ## External libraries
-none
+
+- Apache Commons IO - used for file comparision in tests
+
 ___
 
 [Google docs documentation](https://docs.google.com/document/d/1ENno_0kCY5ld6gknKiRATNfy-hiUUyqH0_rWKdvlXSA)

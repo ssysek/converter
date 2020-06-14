@@ -2,21 +2,21 @@
 
 <Records>
 
-    <Record>
+  <Record>
 
-        id="1"
+      id="1"
 
-        first_name="Gwennie"
+      first_name="Gwennie"
 
-        last_name="Petroselli"
+      last_name="Petroselli"
 
-        email="gpetroselli0@amazonaws.com"
+      email="gpetroselli0@amazonaws.com"
 
-        gender="Female"
+      gender="Female"
 
-        city="Aubergenville"
+      city="Aubergenville"
 
-    </Record>
+  </Record>
 
     <Record>
 

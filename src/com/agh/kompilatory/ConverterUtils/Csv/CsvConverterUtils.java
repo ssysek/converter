@@ -1,4 +1,4 @@
-package com.example.kompilatory.ConverterUtils.Csv;
+package com.agh.kompilatory.ConverterUtils.Csv;
 
 import java.io.BufferedReader;
 import java.io.File;

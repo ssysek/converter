@@ -1,11 +1,13 @@
-package com.example.kompilatory.ConverterUtils;
+package com.agh.kompilatory.ConverterUtils;
 
-import com.example.kompilatory.Exceptions.InvalidFileFormatException;
-import com.example.kompilatory.Providers.ConversionType;
+import com.agh.kompilatory.Exceptions.InvalidFileFormatException;
+import com.agh.kompilatory.Providers.ConversionType;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class Utils {
     public static ConversionType getInputFileType(String filePath) throws InvalidFileFormatException {
@@ -24,10 +26,15 @@ public class Utils {
     public static void saveFile(String fileContent, String outputPath){
         PrintWriter writer = null;
         try {
-            writer = new PrintWriter(outputPath, "UTF-8");
-        } catch (FileNotFoundException e) {
+            writer = new PrintWriter(outputPath, StandardCharsets.UTF_8);
+        }
+        catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        }
+        catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
         writer.print(fileContent);

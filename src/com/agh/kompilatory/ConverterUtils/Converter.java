@@ -1,15 +1,15 @@
-package com.example.kompilatory.ConverterUtils;
+package com.agh.kompilatory.ConverterUtils;
 
-import com.example.kompilatory.ConverterUtils.Csv.CsvConverter;
-import com.example.kompilatory.ConverterUtils.Json.JsonConverter;
-import com.example.kompilatory.Exceptions.InvalidFileFormatException;
-import com.example.kompilatory.Providers.ConversionType;
+import com.agh.kompilatory.ConverterUtils.Csv.CsvConverter;
+import com.agh.kompilatory.ConverterUtils.Json.JsonConverter;
+import com.agh.kompilatory.Exceptions.InvalidFileFormatException;
+import com.agh.kompilatory.Providers.ConversionType;
 
 public class Converter {
     private IConverter converter;
-    private ConversionType outputType;
-    private String inputPath;
-    private String outputPath;
+    private final ConversionType outputType;
+    private final String inputPath;
+    private final String outputPath;
     private boolean csvHasHeaders = false;
 
     public Converter(String inputPath, String outputPath, ConversionType inputType, ConversionType outputType, boolean csvHasHeaders) {

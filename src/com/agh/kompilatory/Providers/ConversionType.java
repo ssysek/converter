@@ -1,4 +1,4 @@
-package com.example.kompilatory.Providers;
+package com.agh.kompilatory.Providers;
 
 public enum ConversionType {
     JSON,
