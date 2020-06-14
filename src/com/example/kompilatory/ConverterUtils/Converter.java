@@ -2,6 +2,7 @@ package com.example.kompilatory.ConverterUtils;
 
 import com.example.kompilatory.ConverterUtils.Csv.CsvConverter;
 import com.example.kompilatory.ConverterUtils.Json.JsonConverter;
+import com.example.kompilatory.ConverterUtils.Xml.XmlConverter;
 import com.example.kompilatory.Exceptions.InvalidFileFormatException;
 import com.example.kompilatory.Providers.ConversionType;
 
@@ -67,6 +68,7 @@ public class Converter {
                 this.converter = JsonConverter.getInstance();
                 break;
             case XML:
+                this.converter = XmlConverter.getInstance();
                 break;
             case CSV:
                 this.converter = CsvConverter.getInstance();

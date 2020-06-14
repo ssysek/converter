@@ -3,13 +3,12 @@ package com.example.kompilatory.ConverterUtils.Xml;
 
 import com.example.kompilatory.ConverterUtils.IConverter;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.io.FileNotFoundException;
+import java.util.List;
 
 
 public class XmlConverter implements IConverter {
@@ -24,7 +23,7 @@ public class XmlConverter implements IConverter {
 
     @Override
     public boolean validateFile(String filePath) {
-        return false;
+        return true;
     }
 
     @Override
@@ -41,7 +40,33 @@ public class XmlConverter implements IConverter {
     }
     @Override
     public String convertToJson(String filePath) {
-        return null;
+        ArrayList<String> content = new ArrayList<String>();
+        ArrayList<String> marks = new ArrayList<String>();
+        StringBuilder output = new StringBuilder();
+        File file = new File(filePath);
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(filePath));
+            String line = reader.readLine();
+            while (line != null) {
+                if(line.contains("/")){
+                    System.out.println("kappa");
+                }
+                else if(line.contains("<")){
+                    marks.add(line.replaceAll("\\P{L}+", ""));
+
+                }else {
+                    content.add(line);
+                    output.append(line);
+                    output.append("\n");
+                }
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return output.toString();
     }
 
 }
