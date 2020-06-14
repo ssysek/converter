@@ -1,4 +1,4 @@
-package com.example.kompilatory.Exceptions;
+package com.agh.kompilatory.Exceptions;
 
 public class InvalidFileFormatException extends Exception {
     private int errorLine;

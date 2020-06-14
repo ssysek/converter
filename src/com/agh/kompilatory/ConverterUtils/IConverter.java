@@ -1,6 +1,6 @@
-package com.example.kompilatory.ConverterUtils;
+package com.agh.kompilatory.ConverterUtils;
 
-import com.example.kompilatory.Exceptions.InvalidFileFormatException;
+import com.agh.kompilatory.Exceptions.InvalidFileFormatException;
 
 import java.io.FileNotFoundException;
 

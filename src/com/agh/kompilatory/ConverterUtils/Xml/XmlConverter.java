@@ -1,7 +1,7 @@
-package com.example.kompilatory.ConverterUtils.Xml;
+package com.agh.kompilatory.ConverterUtils.Xml;
 
 
-import com.example.kompilatory.ConverterUtils.IConverter;
+import com.agh.kompilatory.ConverterUtils.IConverter;
 
 import java.io.*;
 import java.util.*;
@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.io.FileNotFoundException;
 
 
 public class XmlConverter implements IConverter {

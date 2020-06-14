@@ -1,10 +1,11 @@
-package com.example.kompilatory.ConverterUtils.Json;
+package com.agh.kompilatory.ConverterUtils.Json;
 
-import com.example.kompilatory.ConverterUtils.IConverter;
-import com.example.kompilatory.ConverterUtils.Utils;
-import jdk.jshell.execution.Util;
+import com.agh.kompilatory.ConverterUtils.IConverter;
+import com.agh.kompilatory.ConverterUtils.Utils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
