@@ -2,6 +2,7 @@ package com.agh.kompilatory.ConverterUtils.Json;
 
 import com.agh.kompilatory.ConverterUtils.IConverter;
 import com.agh.kompilatory.ConverterUtils.Utils;
+import org.codehaus.plexus.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -61,7 +62,6 @@ public class JsonConverter implements IConverter {
             }
 
             Utils.saveFile(result.toString(), filePath);
-
             return result.toString();
 
 
@@ -91,7 +91,6 @@ public class JsonConverter implements IConverter {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String st;
             while ((st = br.readLine()) != null) {
-                System.out.println(st);
                 Matcher openingMatcher = opening.matcher(st);
                 Matcher oneLineMatcher = oneLine.matcher(st);
                 Matcher closureMatcher = closure.matcher(st);
@@ -183,30 +182,53 @@ public class JsonConverter implements IConverter {
 
         File file = new File(filePath);
         StringBuilder output = new StringBuilder();
+        boolean isNextLineRecord = false;
+        int level = 0;
 
-        Pattern opening = Pattern.compile("(\")([a-zA-Z0-9]+)(\": [{\\[])");
-        Pattern oneLine = Pattern.compile("([\\s]+)(\")([a-zA-Z0-9]+)(\": \")([^\"]+)(\"[,]?)");
-        Pattern arrayEl = Pattern.compile("(\")([^\"]+)(\"[,]?)");
+        Pattern opening = Pattern.compile("([\\s]+)(\")([a-zA-Z0-9]+)(\": [{\\[])");
+        Pattern oneLine = Pattern.compile("([\\s]+)(\")([^\"]+)(\": )([\"]?)([^\"]+)([\"]?)([,]?)");
+        Pattern arrayEl = Pattern.compile("([\\s]+)(\")([^\"]+)(\"[,]?)");
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String st;
             while ((st = br.readLine()) != null) {
-                System.out.println(st);
+                if (st.endsWith(",")) st = StringUtils.chop(st);
+
                 Matcher openingMatcher = opening.matcher(st);
                 Matcher oneLineMatcher = oneLine.matcher(st);
                 Matcher arrayElMatcher = arrayEl.matcher(st);
 
                 if (openingMatcher.find()) {
-                    output.append(openingMatcher.replaceFirst("$2:"));
+                    String replacement = "  ".repeat(level) + "$3:";
+                    output.append(openingMatcher.replaceFirst(replacement));
                     output.append('\n');
                 } else if (oneLineMatcher.find()){
-                    output.append(oneLineMatcher.replaceFirst("$1$3: $5"));
+                    String replacement = "";
+                    String value = oneLineMatcher.group(6);
+                    if (isNextLineRecord) {
+                        if ((value.contains(":") && value.contains(" ")) || (!value.matches("(.*)([a-zA-Z]+)(.*)") && !oneLineMatcher.group(5).isEmpty()))
+                            replacement = "  ".repeat(level - 1) + "- $3: \"$6\"";
+                        else
+                            replacement = "  ".repeat(level - 1) + "- $3: $6";
+                    }
+                    else {
+                        if ((value.contains(":") && value.contains(" ")) || (!value.matches("(.*)([a-zA-Z]+)(.*)") && !oneLineMatcher.group(5).isEmpty()))
+                            replacement = "  ".repeat(level) + "$3: \"$6\"";
+                        else
+                            replacement = "  ".repeat(level) + "$3: $6";
+                    }
+                    output.append(oneLineMatcher.replaceFirst(replacement));
                     output.append('\n');
                 } else if (arrayElMatcher.find()){
-                    output.append(arrayElMatcher.replaceFirst("\t- $2"));
+                    String replacement = "  ".repeat(level) + "- $3";
+                    output.append(arrayElMatcher.replaceFirst(replacement));
                     output.append('\n');
                 }
+
+                isNextLineRecord = st.contains("{");
+                if (st.contains("{")) level++;
+                else if (st.contains("}")) level--;
             }
         }catch (Exception e){
             output = new StringBuilder();
@@ -222,8 +244,11 @@ public class JsonConverter implements IConverter {
         Stack<String> closers = new Stack<>();
         StringBuilder output = new StringBuilder();
 
+        output.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        output.append("\n<root>\n");
+
         Pattern opening = Pattern.compile("(\")([a-zA-Z0-9]+)(\": [{\\[])");
-        Pattern oneLine = Pattern.compile("([\\s]+)(\")([a-zA-Z0-9]+)(\": \")([^\"]+)(\"[,]?)");
+        Pattern oneLine = Pattern.compile("([\\s]+)(\")([^\"]+)(\": )([\"]?)([^\"]+)([\"]?)([,]?)");
         Pattern closure = Pattern.compile("([}\\]][,]?)");
         Pattern arrayEl = Pattern.compile("(\")([^\"]+)(\"[,]?)");
 
@@ -231,7 +256,8 @@ public class JsonConverter implements IConverter {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String st;
             while ((st = br.readLine()) != null) {
-                System.out.println(st);
+                if (st.endsWith(",")) st = StringUtils.chop(st);
+
                 Matcher openingMatcher = opening.matcher(st);
                 Matcher oneLineMatcher = oneLine.matcher(st);
                 Matcher closureMatcher = closure.matcher(st);
@@ -242,7 +268,7 @@ public class JsonConverter implements IConverter {
                     closers.push(openingMatcher.group(2));
                     output.append('\n');
                 } else if (oneLineMatcher.find()){
-                    output.append(oneLineMatcher.replaceFirst("$1<$3>\n\t$1$5\n$1</$3>"));
+                    output.append(oneLineMatcher.replaceFirst("$1<$3>$6</$3>"));
                     output.append('\n');
                 } else if (closureMatcher.find()){
                     if (!closers.empty()) {
@@ -258,7 +284,7 @@ public class JsonConverter implements IConverter {
             output = new StringBuilder();
             System.out.println(e.getMessage());
         }
-
+        output.append("</root>");
         return output.toString();
     }
 

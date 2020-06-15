@@ -10,11 +10,11 @@ import java.io.File;
 import java.io.IOException;
 
 
-class ConverterTests {
-    String sampleCsvFile = "MOCK_DATA.csv";
-    String sampleJsonFile = "MOCK_DATA.json";
-    String sampleYamlFile = "MOCK_DATA.yaml";
-    String sampleXmlFile = "MOCK_DATA.xml";
+class CsvTests {
+    String sampleCsvFile = "mock_data/csv_test_data/MOCK_DATA.csv";
+    String sampleJsonFile = "mock_data/csv_test_data/MOCK_DATA.json";
+    String sampleYamlFile = "mock_data/csv_test_data/MOCK_DATA.yaml";
+    String sampleXmlFile = "mock_data/csv_test_data/MOCK_DATA.xml";
 
     @Test
     public void shouldConvertSampleCsvFileToCorrespondingJson() throws IOException {
@@ -25,7 +25,7 @@ class ConverterTests {
         converter.convert();
         File outputFile = new File(output);
         Assertions.assertTrue(FileUtils.contentEquals(new File(sampleJsonFile), outputFile));
-        outputFile.deleteOnExit();
+        //outputFile.deleteOnExit();
     }
 
     @Test
@@ -37,7 +37,7 @@ class ConverterTests {
         converter.convert();
         File outputFile = new File(output);
         Assertions.assertTrue(FileUtils.contentEquals(new File(sampleYamlFile), outputFile));
-        outputFile.deleteOnExit();
+        //outputFile.deleteOnExit();
     }
 
     @Test
@@ -49,6 +49,6 @@ class ConverterTests {
         converter.convert();
         File outputFile = new File(output);
         Assertions.assertTrue(FileUtils.contentEquals(new File(sampleXmlFile), outputFile));
-        outputFile.deleteOnExit();
+        //outputFile.deleteOnExit();
     }
 }
