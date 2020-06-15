@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 
 class JsonTests {
@@ -25,6 +28,7 @@ class JsonTests {
         converter.convert();
         File outputFile = new File(output);
         Assertions.assertTrue(FileUtils.contentEquals(new File(sampleCsvFile), outputFile));
+
         //outputFile.deleteOnExit();
     }
 
@@ -37,7 +41,7 @@ class JsonTests {
         converter.convert();
         File outputFile = new File(output);
         Assertions.assertTrue(FileUtils.contentEquals(new File(sampleYamlFile), outputFile));
-        //outputFile.deleteOnExit();
+        outputFile.deleteOnExit();
     }
 
     @Test
@@ -48,7 +52,9 @@ class JsonTests {
         Converter converter = new Converter(sampleJsonFile, output, inputConversionType, outputConversionType, true);
         converter.convert();
         File outputFile = new File(output);
-        Assertions.assertTrue(FileUtils.contentEquals(new File(sampleXmlFile), outputFile));
-        //outputFile.deleteOnExit();
+        String created = Files.readString(Path.of("CONVERTED_JSON_TO_XML.xml"), StandardCharsets.US_ASCII);
+        String source = Files.readString(Path.of("mock_data/json_test_data/XML-MOCK.xml"), StandardCharsets.US_ASCII).trim();
+        Assertions.assertTrue(created.equals(source));
+        outputFile.deleteOnExit();
     }
 }

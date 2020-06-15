@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <root>
   <item>
     <_id>5ee750a8bff8678401192913</_id>
@@ -19,24 +19,28 @@
     <registered>2017-04-05T08:54:51 -02:00</registered>
     <latitude>18.159202</latitude>
     <longitude>-38.554736</longitude>
-    <tags>nostrud</tags>
-    <tags>nulla</tags>
-    <tags>incididunt</tags>
-    <tags>laborum</tags>
-    <tags>elit</tags>
-    <tags>nostrud</tags>
-    <tags>dolore</tags>
+    <tags>
+      <item>nostrud</item>
+      <item>nulla</item>
+      <item>incididunt</item>
+      <item>laborum</item>
+      <item>elit</item>
+      <item>nostrud</item>
+      <item>dolore</item>
+    </tags>
     <friends>
-      <id>0</id>
-      <name>Kristen Sanders</name>
-    </friends>
-    <friends>
-      <id>1</id>
-      <name>Rocha Walton</name>
-    </friends>
-    <friends>
-      <id>2</id>
-      <name>Sonja Cherry</name>
+      <item>
+        <id>0</id>
+        <name>Kristen Sanders</name>
+      </item>
+      <item>
+        <id>1</id>
+        <name>Rocha Walton</name>
+      </item>
+      <item>
+        <id>2</id>
+        <name>Sonja Cherry</name>
+      </item>
     </friends>
     <greeting>Hello, Brooke Blankenship! You have 1 unread messages.</greeting>
     <favoriteFruit>banana</favoriteFruit>
@@ -60,29 +64,33 @@
     <registered>2015-10-08T06:01:13 -02:00</registered>
     <latitude>52.615161</latitude>
     <longitude>-166.271849</longitude>
-    <tags>amet</tags>
-    <tags>consequat</tags>
-    <tags>reprehenderit</tags>
-    <tags>ex</tags>
-    <tags>ipsum</tags>
-    <tags>ad</tags>
-    <tags>quis</tags>
+    <tags>
+      <item>amet</item>
+      <item>consequat</item>
+      <item>reprehenderit</item>
+      <item>ex</item>
+      <item>ipsum</item>
+      <item>ad</item>
+      <item>quis</item>
+    </tags>
     <friends>
-      <id>0</id>
-      <name>Juarez Odonnell</name>
-    </friends>
-    <friends>
-      <id>1</id>
-      <name>Mattie Roth</name>
-    </friends>
-    <friends>
-      <id>2</id>
-      <name>Ronda Steele</name>
+      <item>
+        <id>0</id>
+        <name>Juarez Odonnell</name>
+      </item>
+      <item>
+        <id>1</id>
+        <name>Mattie Roth</name>
+      </item>
+      <item>
+        <id>2</id>
+        <name>Ronda Steele</name>
+      </item>
     </friends>
     <greeting>Hello, Atkinson Hernandez! You have 10 unread messages.</greeting>
     <favoriteFruit>strawberry</favoriteFruit>
   </item>
- <item>
+  <item>
     <_id>5ee750a8db899223c8ba0ea1</_id>
     <index>2</index>
     <guid>aea40105-0a12-488a-9e8b-259a9e186a0b</guid>
@@ -101,24 +109,28 @@
     <registered>2015-04-19T11:28:04 -02:00</registered>
     <latitude>11.746093</latitude>
     <longitude>29.649875</longitude>
-    <tags>laboris</tags>
-    <tags>cillum</tags>
-    <tags>dolor</tags>
-    <tags>voluptate</tags>
-    <tags>enim</tags>
-    <tags>aliqua</tags>
-    <tags>consequat</tags>
+    <tags>
+      <item>laboris</item>
+      <item>cillum</item>
+      <item>dolor</item>
+      <item>voluptate</item>
+      <item>enim</item>
+      <item>aliqua</item>
+      <item>consequat</item>
+    </tags>
     <friends>
-      <id>0</id>
-      <name>Bishop Cantrell</name>
-    </friends>
-    <friends>
-      <id>1</id>
-      <name>Ana Reilly</name>
-    </friends>
-    <friends>
-      <id>2</id>
-      <name>Rochelle Cotton</name>
+      <item>
+        <id>0</id>
+        <name>Bishop Cantrell</name>
+      </item>
+      <item>
+        <id>1</id>
+        <name>Ana Reilly</name>
+      </item>
+      <item>
+        <id>2</id>
+        <name>Rochelle Cotton</name>
+      </item>
     </friends>
     <greeting>Hello, Barbra Mccray! You have 1 unread messages.</greeting>
     <favoriteFruit>banana</favoriteFruit>
@@ -142,24 +154,28 @@
     <registered>2015-12-09T04:01:30 -01:00</registered>
     <latitude>11.516468</latitude>
     <longitude>90.94087</longitude>
-    <tags>in</tags>
-    <tags>reprehenderit</tags>
-    <tags>aliqua</tags>
-    <tags>occaecat</tags>
-    <tags>occaecat</tags>
-    <tags>elit</tags>
-    <tags>ut</tags>
+    <tags>
+      <item>in</item>
+      <item>reprehenderit</item>
+      <item>aliqua</item>
+      <item>occaecat</item>
+      <item>occaecat</item>
+      <item>elit</item>
+      <item>ut</item>
+    </tags>
     <friends>
-      <id>0</id>
-      <name>Leonard Dudley</name>
-    </friends>
-    <friends>
-      <id>1</id>
-      <name>Walsh Wise</name>
-    </friends>
-    <friends>
-      <id>2</id>
-      <name>Sykes Holcomb</name>
+      <item>
+        <id>0</id>
+        <name>Leonard Dudley</name>
+      </item>
+      <item>
+        <id>1</id>
+        <name>Walsh Wise</name>
+      </item>
+      <item>
+        <id>2</id>
+        <name>Sykes Holcomb</name>
+      </item>
     </friends>
     <greeting>Hello, Violet Holmes! You have 1 unread messages.</greeting>
     <favoriteFruit>strawberry</favoriteFruit>
@@ -183,27 +199,30 @@
     <registered>2014-01-13T02:18:03 -01:00</registered>
     <latitude>-81.227249</latitude>
     <longitude>21.641076</longitude>
-    <tags>Lorem</tags>
-    <tags>culpa</tags>
-    <tags>sunt</tags>
-    <tags>consectetur</tags>
-    <tags>incididunt</tags>
-    <tags>commodo</tags>
-    <tags>incididunt</tags>
+    <tags>
+      <item>Lorem</item>
+      <item>culpa</item>
+      <item>sunt</item>
+      <item>consectetur</item>
+      <item>incididunt</item>
+      <item>commodo</item>
+      <item>incididunt</item>
+    </tags>
     <friends>
-      <id>0</id>
-      <name>Tonia Castillo</name>
-    </friends>
-    <friends>
-      <id>1</id>
-      <name>Eve Rivas</name>
-    </friends>
-    <friends>
-      <id>2</id>
-      <name>King Lynch</name>
+      <item>
+        <id>0</id>
+        <name>Tonia Castillo</name>
+      </item>
+      <item>
+        <id>1</id>
+        <name>Eve Rivas</name>
+      </item>
+      <item>
+        <id>2</id>
+        <name>King Lynch</name>
+      </item>
     </friends>
     <greeting>Hello, Matthews Hancock! You have 2 unread messages.</greeting>
     <favoriteFruit>banana</favoriteFruit>
   </item>
 </root>
-

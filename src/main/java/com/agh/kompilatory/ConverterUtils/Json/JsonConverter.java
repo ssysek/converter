@@ -81,7 +81,7 @@ public class JsonConverter implements IConverter {
 
 
         Pattern opening = Pattern.compile("(\")([a-zA-Z0-9]+)(\": [{\\[])");
-        Pattern oneLine = Pattern.compile("([\\s]+)(\")([a-zA-Z0-9]+)(\": [\"]?)([^\"]+)([\"]?)([.,]?)");
+        Pattern oneLine = Pattern.compile("([\\s]+)(\")([^\"]+)(\": [\"]?)([^\"]+)([\"]?)([.,]?)");
         Pattern closure = Pattern.compile("([}\\]][,]?)");
         Pattern arrayEl = Pattern.compile("([\\s]+[\"]?)([^\"\\[\\]\\{\\}]+)([\"]?)([,]?)");
 
@@ -243,6 +243,7 @@ public class JsonConverter implements IConverter {
         File file = new File(filePath);
         Stack<String> closers = new Stack<>();
         StringBuilder output = new StringBuilder();
+        int level = 0;
 
         output.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         output.append("\n<root>\n");
@@ -263,10 +264,16 @@ public class JsonConverter implements IConverter {
                 Matcher closureMatcher = closure.matcher(st);
                 Matcher arrayElMatcher = arrayEl.matcher(st);
 
-                if (openingMatcher.find()) {
+                if (st.matches("([\\s]+)\\{")){
+                    level++;
+                    output.append("  ".repeat(level) + "<item>\n");
+                    closers.push("item");
+                }
+                else if (openingMatcher.find()) {
                     output.append(openingMatcher.replaceFirst("<$2>"));
                     closers.push(openingMatcher.group(2));
                     output.append('\n');
+                    level++;
                 } else if (oneLineMatcher.find()){
                     output.append(oneLineMatcher.replaceFirst("$1<$3>$6</$3>"));
                     output.append('\n');
@@ -275,6 +282,7 @@ public class JsonConverter implements IConverter {
                         output.append(closureMatcher.replaceFirst("</" + closers.pop() + ">"));
                         output.append('\n');
                     }
+                    level--;
                 } else if (arrayElMatcher.find()){
                     output.append(arrayElMatcher.replaceFirst("<item>$2</item>"));
                     output.append('\n');
