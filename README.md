@@ -51,7 +51,8 @@ Tool can be triggers via running main class or impemented into existing solution
 - Output file extension is chosen by the user from ones listed above
 ---
 # Structre diagram
-//TODO
+
+![alt text](https://github.com/ssysek/converter/tree/master/diag/classuml.png?raw=true)
 
 ---
 # Test plan
