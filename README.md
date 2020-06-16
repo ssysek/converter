@@ -52,7 +52,7 @@ Tool can be triggers via running main class or impemented into existing solution
 ---
 # Structre diagram
 
-![alt text](https://github.com/ssysek/converter/tree/master/diag/classuml.png?raw=true)
+![alt text](https://raw.githubusercontent.com/ssysek/converter/master/diag/classuml.png?raw=true)
 
 ---
 # Test plan
