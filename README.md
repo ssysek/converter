@@ -9,10 +9,11 @@
 | :------------ |:---------------:| -----:|
 |  #1 | 20.03.2020 | Document creation, initial specification|
 |  #2 | 12.06.2020 |   Documentation improvements |
+|  #3 | 16.06.2020 |   App diagram and testing solution |
 
 ---
 # Overall Decription
-Project goal is to develop easy to use both ways converter for data exchange formats such as JSON, XML, YAML i CSV. Input file, output format and output file path are chossen by user. 
+Project goal is to develop easy to use both ways converter for data exchange formats such as JSON, XML, YAML i CSV. Input file, output format and output file path are chosen by user. 
 
 ---
 # Functionalities
