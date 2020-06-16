@@ -28,8 +28,7 @@ class JsonTests {
         converter.convert();
         File outputFile = new File(output);
         Assertions.assertTrue(FileUtils.contentEquals(new File(sampleCsvFile), outputFile));
-
-        //outputFile.deleteOnExit();
+        outputFile.deleteOnExit();
     }
 
     @Test

@@ -86,19 +86,36 @@ public class JsonConverter implements IConverter {
         Pattern arrayEl = Pattern.compile("([\\s]+[\"]?)([^\"\\[\\]\\{\\}]+)([\"]?)([,]?)");
 
         int level = -1;
+        int depth = -1;
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String st;
             while ((st = br.readLine()) != null) {
+                if (st.endsWith(",")) st = StringUtils.chop(st);
+
                 Matcher openingMatcher = opening.matcher(st);
                 Matcher oneLineMatcher = oneLine.matcher(st);
                 Matcher closureMatcher = closure.matcher(st);
                 Matcher arrayElMatcher = arrayEl.matcher(st);
 
                 if (st.trim().equals("{")){
-                    level++;
+                    depth++;
+                    if (depth == 0){
+                        level++;
+                    }
+                    if (depth > 0) {
+                        parents.push(String.valueOf(arrayElementCounter));
+                        arrayElementCounter++;
+                    }
                 }
+                else if (st.trim().equals("},") || st.trim().equals("}")){
+                    depth--;
+                    if (depth > -1 && !parents.isEmpty()){
+                        parents.pop();
+                    }
+                }
+
                 else if (openingMatcher.find()) {
                     parents.push(openingMatcher.group(2));
                 } else if (oneLineMatcher.find()){
@@ -157,6 +174,8 @@ public class JsonConverter implements IConverter {
     private void inputData(Map<String, List<String>> data, List<String> headers, int level, String key, String input) {
         if (input.trim().equals("null")) return;
 
+        if (input.contains(","))
+            input = "\"" + input + "\"";
         if (!input.contains("\"") && input.contains(","))
             input = input.replace(",", "");
 
