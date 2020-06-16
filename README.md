@@ -71,6 +71,7 @@ Tool can be triggers via running main class or impemented into existing solution
 ## External libraries
 
 - Apache Commons IO - used for file comparision in tests
+- JUnit 5, JUnit Jupiter - used for testing of application 
 
 ___
 
