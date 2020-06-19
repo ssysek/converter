@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 
 class CsvTests {
@@ -24,31 +27,35 @@ class CsvTests {
         Converter converter = new Converter(sampleCsvFile, output, inputConversionType, outputConversionType, true);
         converter.convert();
         File outputFile = new File(output);
-        Assertions.assertTrue(FileUtils.contentEquals(new File(sampleJsonFile), outputFile));
-        //outputFile.deleteOnExit();
+        String source = Files.readString(Path.of(sampleJsonFile)).trim();
+        String created = Files.readString(Path.of(output));
+        Assertions.assertTrue(created.equals(source));
+        outputFile.deleteOnExit();
     }
 
     @Test
     public void shouldConvertSampleCsvFileToCorrespondingYaml() throws IOException {
         ConversionType inputConversionType = ConversionType.CSV;
         ConversionType outputConversionType = ConversionType.YAML;
-        String output = "CONVERTED_CSV_TO_YAML.json";
+        String output = "CONVERTED_CSV_TO_YAML.yaml";
         Converter converter = new Converter(sampleCsvFile, output, inputConversionType, outputConversionType, true);
         converter.convert();
         File outputFile = new File(output);
         Assertions.assertTrue(FileUtils.contentEquals(new File(sampleYamlFile), outputFile));
-        //outputFile.deleteOnExit();
+        outputFile.deleteOnExit();
     }
 
     @Test
     public void shouldConvertSampleCsvFileToCorrespondingXml() throws IOException {
         ConversionType inputConversionType = ConversionType.CSV;
         ConversionType outputConversionType = ConversionType.XML;
-        String output = "CONVERTED_CSV_TO_XML.json";
+        String output = "CONVERTED_CSV_TO_XML.xml";
         Converter converter = new Converter(sampleCsvFile, output, inputConversionType, outputConversionType, true);
         converter.convert();
         File outputFile = new File(output);
-        Assertions.assertTrue(FileUtils.contentEquals(new File(sampleXmlFile), outputFile));
-        //outputFile.deleteOnExit();
+        String source = Files.readString(Path.of(sampleXmlFile)).trim();
+        String created = Files.readString(Path.of(output));
+        Assertions.assertTrue(created.equals(source));
+        outputFile.deleteOnExit();
     }
 }
