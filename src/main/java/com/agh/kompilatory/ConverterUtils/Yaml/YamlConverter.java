@@ -141,7 +141,7 @@ public class YamlConverter implements IConverter {
 
                 if (row == 4) {
                     int zerowy = level - 1;
-                    System.out.println(row);
+
 
                     row = 0;
                     output.append("\t\t" + "</" + replace.replaceAll("[^a-zA-Z]", "") + ">\n");

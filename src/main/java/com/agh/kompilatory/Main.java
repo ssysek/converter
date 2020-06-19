@@ -9,8 +9,8 @@ import com.agh.kompilatory.Validators.InputFileValidator;
 public class Main {
 
     public static void main(String[] args) {
-        String filePath = "MOCK_DATA.csv";
-        String outputFilePath = "MOCK_DATA.xml";
+        String filePath = "mock_data/yaml_test_data/YAML-MOCK2.yaml";
+        String outputFilePath = "mock_data/yaml_test_data/MOCK_DATA2.xml";
         ConversionType outputConversionType = ConversionType.XML;
         if (InputFileValidator.validate(filePath)) {
             try {

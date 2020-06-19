@@ -22,7 +22,7 @@ public class YamlTests {
     public void shouldConvertSampleYamlFileToCorrespondingJson() throws IOException {
         ConversionType inputConversionType = ConversionType.YAML;
         ConversionType outputConversionType = ConversionType.JSON;
-        String output = "CONVERTED_JSON_TO_YAML.yaml";
+        String output = "CONVERTED_YAML_TO_JSON.yaml";
         Converter converter = new Converter(sampleYamlFile, output, inputConversionType, outputConversionType, true);
         converter.convert();
         File outputFile = new File(output);
