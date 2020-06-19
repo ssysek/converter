@@ -40,7 +40,7 @@ public class CsvConverter implements IConverter {
             for (List<String> dataCell : csvObject.data) {
                 output.append(dataCell.get(0));
                 output.append(":");
-                output.append("\n\r");
+                output.append("\n");
                 for (int i = 0; i < dataCell.size(); i++) {
                     if (hasHeaders) {
 
@@ -48,11 +48,11 @@ public class CsvConverter implements IConverter {
                         output.append(csvObject.headers.get(i));
                         output.append(": ");
                         output.append(dataCell.get(i));
-                        output.append("\n\r");
+                        output.append("\n");
                     } else {
                         output.append("  -");
                         output.append(dataCell.get(i));
-                        output.append("\n\r");
+                        output.append("\n");
                     }
                 }
             }
@@ -69,13 +69,13 @@ public class CsvConverter implements IConverter {
         try {
             CsvObject csvObject = getCsvFile(filePath, this.hasHeaders);
             output.append("<?xml version=\"1.0\" ?>");
-            output.append("\n\r");
+            output.append("\n");
             output.append("<Records>");
-            output.append("\n\r");
+            output.append("\n");
             for (List<String> dataCell : csvObject.data) {
                 output.append("  ");
                 output.append("<Record>");
-                output.append("\n\r");
+                output.append("\n");
                 for (int i = 0; i < dataCell.size(); i++) {
                     if (hasHeaders) {
                         output.append("    ");
@@ -84,7 +84,7 @@ public class CsvConverter implements IConverter {
                         output.append('"');
                         output.append(dataCell.get(i));
                         output.append('"');
-                        output.append("\n\r");
+                        output.append("\n");
                     } else {
                         output.append("    ");
                         output.append("val_").append(i);
@@ -92,12 +92,12 @@ public class CsvConverter implements IConverter {
                         output.append('"');
                         output.append(dataCell.get(i));
                         output.append('"');
-                        output.append("\n\r");
+                        output.append("\n");
                     }
                 }
                 output.append("  ");
                 output.append("</Record>");
-                output.append("\n\r");
+                output.append("\n");
             }
             output.append("</Records>");
         }
@@ -113,7 +113,7 @@ public class CsvConverter implements IConverter {
         try {
             CsvObject csvObject = getCsvFile(filePath, this.hasHeaders);
             output.append('{');
-            output.append("\n\r");
+            output.append("\n");
             for (List<String> dataCell : csvObject.data) {
                 output.append('"');
                 output.append(dataCell.get(0));
@@ -124,7 +124,7 @@ public class CsvConverter implements IConverter {
                 } else {
                     output.append('[');
                 }
-                output.append("\n\r");
+                output.append("\n");
                 for (int i = 0; i < dataCell.size(); i++) {
                     if (hasHeaders) {
                         output.append("  ");
@@ -138,7 +138,7 @@ public class CsvConverter implements IConverter {
                         if (! (i == dataCell.size() - 1)) {
                             output.append(',');
                         }
-                        output.append("\n\r");
+                        output.append("\n");
                     } else {
                         output.append("  ");
                         output.append('"');
@@ -147,7 +147,7 @@ public class CsvConverter implements IConverter {
                         if (! (i == dataCell.size() - 1)) {
                             output.append(',');
                         }
-                        output.append("\n\r");
+                        output.append("\n");
                     }
                 }
                 if (hasHeaders) {
@@ -156,10 +156,10 @@ public class CsvConverter implements IConverter {
                     output.append(']');
                 }
                 output.append(',');
-                output.append("\n\r");
+                output.append("\n");
             }
             output.setLength(output.length() - 3);
-            output.append("\n\r");
+            output.append("\n");
             output.append('}');
         }
         catch (Exception e) {
