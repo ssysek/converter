@@ -75,6 +75,7 @@ public class Converter {
             case CSV:
                 this.converter = CsvConverter.getInstance();
                 ((CsvConverter) this.converter).setHasHeaders(this.isCsvHasHeaders());
+                break;
             case YAML:
                 this.converter = YamlConverter.getInstance();
                 break;

@@ -51,7 +51,7 @@ class JsonTests {
         Converter converter = new Converter(sampleJsonFile, output, inputConversionType, outputConversionType, true);
         converter.convert();
         File outputFile = new File(output);
-        String created = Files.readString(Path.of("CONVERTED_JSON_TO_XML.xml"), StandardCharsets.US_ASCII);
+        String created = Files.readString(Path.of(output), StandardCharsets.US_ASCII);
         String source = Files.readString(Path.of("mock_data/json_test_data/XML-MOCK.xml"), StandardCharsets.US_ASCII).trim();
         Assertions.assertTrue(created.equals(source));
         outputFile.deleteOnExit();

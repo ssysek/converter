@@ -9,9 +9,15 @@ import com.agh.kompilatory.Validators.InputFileValidator;
 public class Main {
 
     public static void main(String[] args) {
-        String filePath = "mock_data/yaml_test_data/YAML-MOCK2.yaml";
-        String outputFilePath = "mock_data/yaml_test_data/MOCK_DATA2.xml";
-        ConversionType outputConversionType = ConversionType.XML;
+//        String filePath = "example1.json";
+//        String outputFilePath = "example1_output.csv";
+//        ConversionType outputConversionType = ConversionType.CSV;
+
+        String filePath = "example2.xml";
+        String outputFilePath = "example2_output.yaml";
+        ConversionType outputConversionType = ConversionType.YAML;
+
+
         if (InputFileValidator.validate(filePath)) {
             try {
                 ConversionType inputConversionType = Utils.getInputFileType(filePath);
@@ -22,7 +28,6 @@ public class Main {
             catch (InvalidFileFormatException e) {
                 System.out.println(e.getMessage() + " " + e.getErrorLine());
             }
-
         }
     }
 }
