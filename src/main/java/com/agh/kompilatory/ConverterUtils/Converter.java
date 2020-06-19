@@ -3,6 +3,7 @@ package com.agh.kompilatory.ConverterUtils;
 import com.agh.kompilatory.ConverterUtils.Csv.CsvConverter;
 import com.agh.kompilatory.ConverterUtils.Json.JsonConverter;
 import com.agh.kompilatory.ConverterUtils.Xml.XmlConverter;
+import com.agh.kompilatory.ConverterUtils.Yaml.YamlConverter;
 import com.agh.kompilatory.Exceptions.InvalidFileFormatException;
 import com.agh.kompilatory.Providers.ConversionType;
 
@@ -75,6 +76,7 @@ public class Converter {
                 this.converter = CsvConverter.getInstance();
                 ((CsvConverter) this.converter).setHasHeaders(this.isCsvHasHeaders());
             case YAML:
+                this.converter = YamlConverter.getInstance();
                 break;
         }
     }
